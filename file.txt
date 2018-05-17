@@ -1,0 +1,191 @@
+CREATE SCHEMA TASK_DB ;
+
+CREATE TABLE TASK_DB.Users (
+  ID int(11) NOT NULL AUTO_INCREMENT,
+  LOGIN varchar(45) NOT NULL,
+  PASSWORD varchar(45) NOT NULL,
+  PRIMARY KEY (ID)
+) 
+
+INSERT INTO TASK_DB.Users (ID, LOGIN, PASSWORD) VALUES (2, 'root', md5('root'));
+INSERT INTO TASK_DB.Users (ID, LOGIN, PASSWORD) VALUES (3, 'zhuldyz', md5('zhuldyz'));
+
+-----------------------------------------------------------------
+CREATE TABLE TASK_DB.Clients (
+  ID int(11) NOT NULL AUTO_INCREMENT,
+  IIN varchar(12) NOT NULL,
+  LastName varchar(45) DEFAULT NULL,
+  FirstName varchar(45) DEFAULT NULL,
+  MiddleName varchar(45) DEFAULT NULL,
+  Telephone varchar(45) DEFAULT NULL,
+  BirthDay date DEFAULT NULL,
+  Gender char(1) DEFAULT NULL,
+  DocumentNumber varchar(9) DEFAULT NULL,
+  IssuedBy varchar(45) DEFAULT NULL,
+  IssuedWhen date DEFAULT NULL,
+  ValidUntill date DEFAULT NULL,
+  Salary double DEFAULT NULL,
+  ComPaymentsRent double DEFAULT NULL,
+  PRIMARY KEY (ID),
+  UNIQUE KEY `IIN_UNIQUE` (IIN)
+)
+
+INSERT INTO TASK_DB.Clients
+(ID,
+IIN,
+LastName,
+FirstName,
+MiddleName,
+Telephone,
+BirthDay,
+Gender,
+DocumentNumber,
+IssuedBy,
+IssuedWhen,
+ValidUntill,
+Salary,
+ComPaymentsRent)
+VALUES
+('3',
+'911018401391',
+'Бек',
+'Жулдыз',
+'Жанайкызы',
+'(778)928-0800',
+'1991-10-18',
+'2',
+'123456789',
+'МВД РК',
+'2000-01-01',
+'2020-01-01',
+500000,
+100000);
+
+INSERT INTO TASK_DB.Clients
+(ID,
+IIN,
+LastName,
+FirstName,
+MiddleName,
+Telephone,
+BirthDay,
+Gender,
+DocumentNumber,
+IssuedBy,
+IssuedWhen,
+ValidUntill,
+Salary,
+ComPaymentsRent)
+VALUES
+('4',
+'222222222223',
+'фыасфыса',
+'фыа',
+'фыапмв',
+'(778)980-9898',
+'1994-04-16',
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL);
+
+---------------------------------------------------------------
+
+CREATE TABLE TASK_DB.Applications (
+  ID int(11) NOT NULL AUTO_INCREMENT,
+  UserID int(11) NOT NULL,
+  ClientIIN varchar(12) NOT NULL,
+  NumberOfApp varchar(45) NOT NULL,
+  DateOfApp date NOT NULL,
+  AmountKZ double DEFAULT NULL,
+  AmountUSD double DEFAULT NULL,
+  Term varchar(10) DEFAULT NULL,
+  Status varchar(45) DEFAULT NULL,
+  Rate varchar(10) DEFAULT NULL,
+  MonthlyPayments double DEFAULT NULL,
+  TotalAmount double DEFAULT NULL,
+  OverPayments double DEFAULT NULL,
+  PRIMARY KEY (ID),
+  UNIQUE KEY `NumberOfApp_UNIQUE` (NumberOfApp)
+)
+
+INSERT INTO TASK_DB.Applications
+(ID,
+UserID,
+ClientIIN,
+NumberOfApp,
+DateOfApp,
+AmountKZ,
+AmountUSD,
+Term,
+Status,
+Rate,
+MonthlyPayments,
+TotalAmount,
+OverPayments)
+VALUES
+('1',
+'3',
+'911018401392',
+'291f81e7-4621-cb37-ec34-ee8407327346',
+'2018-05-17',
+500000,
+1528.54,
+'9',
+'CONFIRMED',
+'10',
+57895.98,
+521063.83,
+21063.83);
+
+INSERT INTO TASK_DB.Applications
+(ID,
+UserID,
+ClientIIN,
+NumberOfApp,
+DateOfApp,
+AmountKZ,
+AmountUSD,
+Term,
+Status,
+Rate,
+MonthlyPayments,
+TotalAmount,
+OverPayments)
+VALUES
+('2',
+'3',
+'222222222222',
+'fa7e9317-1247-f351-7edb-233446177f1f',
+'2018-05-17',
+NULL,
+NULL,
+NULL,
+'CANCELED',
+NULL,
+NULL,
+NULL,
+NULL);
+
+
+------------------------------------------------------------
+
+CREATE TABLE TASK_DB.Terms (
+  ID int(11) NOT NULL AUTO_INCREMENT,
+  Name varchar(20) NOT NULL,
+  PRIMARY KEY (ID)
+) 
+
+INSERT INTO TASK_DB.Terms (ID, Name) VALUES (1, '3');
+INSERT INTO TASK_DB.Terms (ID, Name) VALUES (2, '6');
+INSERT INTO TASK_DB.Terms (ID, Name) VALUES (3, '9');
+INSERT INTO TASK_DB.Terms (ID, Name) VALUES (4, '12');
+INSERT INTO TASK_DB.Terms (ID, Name) VALUES (5, '18');
+INSERT INTO TASK_DB.Terms (ID, `Name`) VALUES (6, '24');
+
+
+
+
